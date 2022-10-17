@@ -6,9 +6,18 @@ export class Notes {
 
     constructor(
         private _title: string,
-        private _description: string
+        private _description: string,
+        private _saveNote: boolean = false
     ){
         this._id = idNotes();
+    }
+
+    public get saveNote() {
+        return this._saveNote;
+    }
+
+    public set saveNote(saveNote: boolean) {
+        this._saveNote = saveNote;
     }
 
     public get idNotes() {
@@ -35,7 +44,8 @@ export class Notes {
         return {
             id: this._id,
             title: this._title,
-            description: this._description
+            description: this._description,
+            saved: this._saveNote
         }
     }
 

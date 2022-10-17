@@ -24,6 +24,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -56,6 +57,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -98,6 +100,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -134,6 +137,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -167,6 +171,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -199,6 +204,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -234,6 +240,7 @@ export class UsersController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 

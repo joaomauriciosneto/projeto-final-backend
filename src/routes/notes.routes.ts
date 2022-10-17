@@ -28,3 +28,7 @@ notesRouter.get('/:idUser', new NotesController().listNotesByUser);
 notesRouter.put('/:idUser/:idNote', new NotesController().editNote);
 
 notesRouter.delete('/:idUser/:idNote', new NotesController().deleteNote);
+
+notesRouter.put('/flag/:idUser/:idNote', new NotesController().SavedNotes);
+
+notesRouter.get('/flag/:idUser/', new NotesController().listAllSavedNotes);

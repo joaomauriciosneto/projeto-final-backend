@@ -9,7 +9,7 @@ export class NotesController {
         try {
 
             const {idUser} = req.params;
-            const {title, description} = req.body;           
+            const {title, description, saved} = req.body;           
 
             if(!title) {
                 return res.status(400).send({
@@ -25,8 +25,12 @@ export class NotesController {
                 })
             }
 
-            const note = new Notes(title, description);
+            const note = new Notes(title, description, saved);
             const user = usersList.find(user => user.id == idUser);
+
+            if(saved) {
+                note.saveNote = true;
+            }
 
             if(!user) {
                 return res.status(404).send({
@@ -51,6 +55,7 @@ export class NotesController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -97,6 +102,7 @@ export class NotesController {
          
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -145,6 +151,7 @@ export class NotesController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
@@ -189,6 +196,88 @@ export class NotesController {
             
             return res.status(500).send({
                 ok: false,
+                message: 'Server instability!',
+                error: error.toString()
+            })
+
+        }
+
+    }
+
+    public SavedNotes(req: Request, res: Response) {
+
+        try {
+
+            const {idUser, idNote} = req.params;
+            const {saved} = req.body;
+
+            const user = usersList.find(user => user.id == idUser);
+
+            if(!user) {
+                return res.send(404).send({
+                    ok: false,
+                    message: 'User not found!'
+                })
+            }
+
+            const note = user.note?.find(note => note.idNotes == idNote);
+
+            if(!note) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'Note not found!'
+                })
+            }
+
+            note.saveNote = saved;
+
+            return res.status(200).send({
+                ok: true,
+                message: 'Flag changed!'
+            })
+            
+        } catch (error: any) {
+            
+            return res.status(500).send({
+                ok: false,
+                message: 'Server instability!',
+                error: error.toString()
+            })
+
+        }
+
+    }
+
+    public listAllSavedNotes(req: Request, res: Response) {
+
+        try {
+
+            const {idUser} = req.params;
+
+            const user = usersList.find(user => user.id == idUser);
+
+            if(!user) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'User not found!'
+                })
+            }
+
+            let listNotes = user.note || [];
+
+            let returnListNotes = listNotes.filter(note => note.saveNote === true)
+
+            return res.status(200).send({
+                ok: true,
+                message: 'List of saved messages!',
+                data: returnListNotes
+            })
+
+        } catch (error: any) {
+            
+            return res.status(500).send({
+                ok: false,
+                message: 'Server instability!',
                 error: error.toString()
             })
 
