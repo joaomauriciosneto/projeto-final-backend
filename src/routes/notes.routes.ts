@@ -15,7 +15,7 @@ notesRouter.post('/users', [userValidator], new UsersController().registerUser);
 
 notesRouter.put('/users/:email', new UsersController().editUser);
 
-notesRouter.delete('/users/:email', new UsersController().deleteUser);
+notesRouter.delete('/users/:idUser', new UsersController().deleteUser);
 
 notesRouter.post('/login', new UsersController().login);
 
@@ -29,6 +29,6 @@ notesRouter.put('/:idUser/:idNote', new NotesController().editNote);
 
 notesRouter.delete('/:idUser/:idNote', new NotesController().deleteNote);
 
-notesRouter.put('/flag/:idUser/:idNote', new NotesController().SavedNotes);
+notesRouter.put('/flag/:idUser/:idNote', new NotesController().savedNotes);
 
 notesRouter.get('/flag/:idUser/', new NotesController().listAllSavedNotes);

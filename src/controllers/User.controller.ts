@@ -149,9 +149,9 @@ export class UsersController {
 
         try {
 
-            const {email} = req.params;
+            const {idUser} = req.params;
 
-            const user = usersList.findIndex(user => user.email === email)
+            const user = usersList.findIndex(user => user.id === idUser)
 
             if(!user) {
                 return res.status(404).send({
@@ -165,39 +165,6 @@ export class UsersController {
             return res.status(200).send({
                 ok: true,
                 message: 'User successfully deleted!'
-            })
-            
-        } catch (error: any) {
-            
-            return res.status(500).send({
-                ok: false,
-                message: 'Server instability!',
-                error: error.toString()
-            })
-
-        }
-
-    }
-
-    public listUser(req: Request, res: Response) {
-
-        try {
-
-            const {email} = req.params;
-
-            const user = usersList.find(user => user.email === email)
-
-            if(!user) {
-                return res.status(404).send({
-                    ok: false,
-                    message: 'User not found!'
-                })
-            }
-
-            return res.status(200).send({
-                ok: true,
-                message: 'User found!',
-                data: user
             })
             
         } catch (error: any) {

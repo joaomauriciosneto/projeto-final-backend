@@ -205,7 +205,7 @@ export class NotesController {
 
     }
 
-    public SavedNotes(req: Request, res: Response) {
+    public savedNotes(req: Request, res: Response) {
 
         try {
 
