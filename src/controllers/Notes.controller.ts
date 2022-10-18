@@ -93,7 +93,8 @@ export class NotesController {
                     return {
                         id: item.idNotes,
                         title: item.title,
-                        description: item.description
+                        description: item.description,
+                        saved: item.saveNote
                     }
                 })
             })
